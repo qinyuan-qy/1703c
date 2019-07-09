@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<properties resource="db.properties"></properties>
+	<!-- 打印底层执行过程    默认是关闭的 -->
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<!-- 别名 -->
+	<typeAliases >
+		<typeAlias type="com.bw.bean.User" alias="user"/>
+		<typeAlias type="com.bw.bean.Moive" alias="moive"/>
+	</typeAliases>
+	<!-- 引入插件 -->
+	
+	 <plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql"/>
+		</plugin>
+	</plugins>
+	
+	<environments default="environment">
+		<environment id="environment">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" 
+					value="${mysql.driver}" />
+				<property name="url"
+					value="${mysql.url}"/>
+				<property name="username" value="${mysql.username}" />
+				<property name="password" value="${mysql.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 加载sql定义文件 -->
+	<mappers>
+		<mapper resource="com/bw/dao/UserMapper.xml" />
+	
+	</mappers>
+</configuration> 

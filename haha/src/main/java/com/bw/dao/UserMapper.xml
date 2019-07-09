@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.dao.UserDao">
+	<select id="login" resultType="user" parameterType="user">
+		select * from user where uname=#{uname} and upwd=#{upwd}
+	</select>
+	<select id="findall" resultType="moive">
+		select * from moive
+	</select>
+	<select id="shangjia" resultType="moive" parameterType="int">
+		select * from moive where mid=#{mid}
+	</select>
+	<update id="updatejia" parameterType="moive">
+		update moive set mname=#{mname},author=#{author},price=#{price},mdate=#{mdate},mtype=#{mtype},mstatus=#{mstatus} where mid=#{mid}
+	</update>
+</mapper>
