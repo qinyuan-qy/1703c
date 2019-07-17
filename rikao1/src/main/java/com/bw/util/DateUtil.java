@@ -12,9 +12,8 @@ public class DateUtil {
 	public static int getAge (Date src) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Calendar calendar = sdf.getCalendar();
-		Date time = calendar.getTime();
-		long time2 = src.getTime();
+		String format = sdf.format(new Date());
+		
 		
 		return 0;
 	
@@ -35,8 +34,6 @@ public class DateUtil {
 	//例如给定的日期为“2019-09-19 19:29:39”，返回“2019-09-30 23:59:59”，
 	//注意月大月小以及闰年。
 	public static Date getDateByMonthLast(Date src) {
-	
-		
 		
 		return src;
 		
