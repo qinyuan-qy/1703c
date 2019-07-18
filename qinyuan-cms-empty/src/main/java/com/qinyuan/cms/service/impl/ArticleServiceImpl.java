@@ -43,6 +43,17 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return articles;
 	}
+
+	@Override
+	public void increaseHit(Integer id) {
+		articleMapper.increaseHit(id);
+		
+	}
+
+	@Override
+	public Article selectByPrimaryKey(Integer id) {
+		return articleMapper.selectByPrimaryKey(id);
+	}
 	
 	
 }
