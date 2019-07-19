@@ -325,10 +325,6 @@
     order by b.comments desc
     limit 10
   </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cms_article where id = #{id,jdbcType=INTEGER}
-  </delete>
  
      <update id="countComments" parameterType="java.lang.Integer">
     update cms_article set comments=(select count(id) from blog_comment where blog=#{id,jdbcType=INTEGER}) where id = #{id,jdbcType=INTEGER}
@@ -374,7 +370,9 @@
 	</where>
 	</update>
 	
-	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+       delete from cms_article where id = #{id,jdbcType=INTEGER}
+    </delete>
 	
 	
 </mapper>

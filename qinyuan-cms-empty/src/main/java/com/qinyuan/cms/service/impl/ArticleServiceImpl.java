@@ -74,6 +74,12 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		articleMapper.save(article);
 	}
+
+	@Override
+	public int deleteByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return articleMapper.deleteByPrimaryKey(id);
+	}
 	
 	
 }

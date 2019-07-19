@@ -80,13 +80,15 @@
 			if(confirm("您是否要删除这篇博客？")){
 				$.ajax({
 					url:'/my/blog/remove?id=' + id,
+					dataType : 'json',
 					type:'get',
 					success:function(data){
-						/* if(data.status){
-							$("#item_" + id).remove();
+						 if(data>0){
+							alert("删除成功")
+							location.href="/my/blogs";
 						}else{
-							alert(data.message);
-						} */
+							alert("删除失败");
+						}
 					}
 				});
 			}

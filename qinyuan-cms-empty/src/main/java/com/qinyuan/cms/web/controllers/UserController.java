@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
@@ -59,10 +60,10 @@ public class UserController {
 	@RequestMapping("/blogs")
 	public String blogs(Model model,HttpServletRequest request,HttpSession session, @RequestParam(required=false,defaultValue="1")Integer page){
 		Article article = new Article();
+		PageHelper.startPage(page,3);
 		User user = (User)session.getAttribute(Constant.LOGIN_USER);
 		article.setAuthor(user);
 		List<Article> articlea = articleService.queryAll(article);
-		PageHelper.startPage(page,3);
 		PageInfo<Article> pageInfo = new PageInfo<Article>(articlea,3);
 		String page2 = PageHelpUtil.page("/my/blogs", pageInfo, null);
 		model.addAttribute("blogs", articlea);
@@ -104,4 +105,12 @@ public class UserController {
 		return "redirect:/my/blogs";
 		
 	}
+	@RequestMapping("/blog/remove")
+	@ResponseBody
+	public Integer remove(Integer id){
+		int num = articleService.deleteByPrimaryKey(id);
+		return num;
+		
+	}
+	
 }

@@ -41,6 +41,8 @@ public interface ArticleService {
 
 	public abstract void save(Article article);
 
+	public abstract int deleteByPrimaryKey(Integer id);
+
 	
 
 }
