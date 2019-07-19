@@ -99,11 +99,13 @@
 			});
 		}); */
 		//加载所有频道
+	$(function(){
 		$.ajax({
 			url :'/queryAllChannel',
 			dataType : 'json',
 			type : 'post',
 			success : function(data){
+				
 				var content = "";
 				for(var i = 0 ; i < data.length; i++){
 					content += "<option value="+data[i].id+">"+data[i].name+"</option>";
@@ -125,6 +127,7 @@
 				}); 
 			}
 		});
+	})
 		
 		$('#channel').change(function(){
 			var channel_id = $(this).find('option:selected').val();

@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
+import com.qinyuan.cms.domain.Category;
+import com.qinyuan.cms.domain.Channel;
 
 
 /**
@@ -56,5 +58,13 @@ public interface ArticleMapper {
 
 
 	public Article selectByPrimaryKey(Integer id);
+
+
+	public List<Article> queryAll(@Param("article") Article article);
+
+
+	public void updateByKey(Article article);
+
+
 
 }

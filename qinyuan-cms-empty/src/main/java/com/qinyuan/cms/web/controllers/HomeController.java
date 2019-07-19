@@ -3,6 +3,7 @@
  */
 package com.qinyuan.cms.web.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,13 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
 import com.qinyuan.cms.domain.Channel;
 import com.qinyuan.cms.domain.Slide;
 import com.qinyuan.cms.service.ArticleService;
+import com.qinyuan.cms.service.ChannelCategoryService;
 import com.qinyuan.cms.service.SlideService;
 
 /**
@@ -34,6 +38,8 @@ public class HomeController {
 
 	@Resource
 	private ArticleService articleService;
+	
+	
 	
 	@Resource
 	private SlideService slideService;
@@ -102,4 +108,6 @@ public class HomeController {
 		return "blog";
 		
 	}
+	
+	
 }

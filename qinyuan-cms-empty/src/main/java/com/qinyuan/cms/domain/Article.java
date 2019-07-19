@@ -196,6 +196,16 @@ public class Article implements Serializable {
 	//---------------------------------------------------------------------
 
 	@Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", summary="
+				+ summary + ", content=" + content + ", picture=" + picture
+				+ ", channel=" + channel + ", category=" + category
+				+ ", author=" + author + ", hits=" + hits + ", hot=" + hot
+				+ ", status=" + status + ", deleted=" + deleted + ", created="
+				+ created + ", updated=" + updated + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

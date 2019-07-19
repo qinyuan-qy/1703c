@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
+import com.qinyuan.cms.domain.Category;
+import com.qinyuan.cms.domain.Channel;
 import com.qinyuan.cms.domain.User;
 
 /**
@@ -32,6 +34,13 @@ public interface ArticleService {
 	public abstract void increaseHit(Integer id);
 
 	public abstract Article selectByPrimaryKey(Integer id);
+
+	public abstract List<Article> queryAll(Article article);
+
+	public abstract void updateByKey(Article article);
+
+	public abstract void save(Article article);
+
 	
 
 }

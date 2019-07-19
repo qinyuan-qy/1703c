@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.dao.ArticleMapper;
 import com.qinyuan.cms.domain.Article;
+import com.qinyuan.cms.domain.Category;
+import com.qinyuan.cms.domain.Channel;
 import com.qinyuan.cms.service.ArticleService;
 
 /**
@@ -53,6 +55,24 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Article selectByPrimaryKey(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Article> queryAll(Article article) {
+		// TODO Auto-generated method stub
+		return articleMapper.queryAll(article);
+	}
+
+	@Override
+	public void updateByKey(Article article) {
+		
+		articleMapper.updateByKey(article);
+	}
+
+	@Override
+	public void save(Article article) {
+		
+		articleMapper.save(article);
 	}
 	
 	
