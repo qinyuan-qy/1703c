@@ -26,5 +26,7 @@ public interface UserService {
 
 	public abstract User selectById(Integer id);
 
-	public abstract List<Comment> commentsList();
+	public abstract List<Comment> commentsList(Integer id);
+
+	public abstract void updatephtno(User user);
 }

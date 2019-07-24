@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,7 @@ import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
 import com.qinyuan.cms.service.UserService;
 import com.qinyuan.cms.utils.FileUploadUtil;
+import com.qinyuan.cms.utils.FileUtil;
 import com.qinyuan.cms.utils.PageHelpUtil;
 import com.qinyuan.cms.web.Constant;
 
@@ -127,11 +130,42 @@ public class UserController {
 		return "user-space/profile";
 	}
 	
-	@RequestMapping("/comments")
-	public String commentsList(Model model){
-		System.out.println(1);
-		List<Comment> list= userService.commentsList();
+	@RequestMapping("/comment")
+	public String commentsList(Model model,HttpServletRequest request,@RequestParam(required=false,defaultValue="1")Integer page){
+		PageHelper.startPage(page,5);
+		User user = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		List<Comment> list= userService.commentsList(user.getId());
+		PageInfo<Comment> pageInfo = new PageInfo<Comment>(list,3);
+		String page2 = PageHelpUtil.page("/my/comment", pageInfo, null);
 		model.addAttribute("comments", list);
+		model.addAttribute("pageList", page2);
 		return "user-space/comments";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/profile/avatar")
+	public String avatar(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		User user2 = userService.selectById(user.getId());
+		model.addAttribute("user", user2);
+		return "user-space/avatar";
+	}
+	@RequestMapping("/updatephtno")
+	public String updatephtno(MultipartFile file,HttpServletRequest request){
+		User user1 = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		String upload = FileUploadUtil.upload(request, file);
+		User user = new User();
+		user.setImage(upload);
+		user.setId(user1.getId());
+		userService.updatephtno(user);
+		user1.setImage(upload);
+		return "redirect:/my/profile/avatar";
+		
 	}
 }

@@ -100,7 +100,7 @@
 						  <div class="media-left">
 						    <a href="#">
 						      <img class="media-object" src="${article.picture}" width="120" alt="${article.title }">
-						    </a>
+						   </a>
 						  </div>
 						  <div class="media-body">
 						    <h3 class="media-heading article_title"><a href="/article?id=${article.id}">${article.title }</a></h3>

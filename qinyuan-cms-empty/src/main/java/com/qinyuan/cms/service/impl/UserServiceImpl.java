@@ -61,9 +61,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Comment> commentsList() {
+	public List<Comment> commentsList(Integer id) {
 		// TODO Auto-generated method stub
-		return userMapper.commentsList();
+		return userMapper.commentsList(id);
+	}
+
+	@Override
+	public void updatephtno(User user) {
+		
+		userMapper.updatephtno(user);
 	}
 	
 }

@@ -43,9 +43,15 @@
 				  <div class="panel-body">
 				   <h1>我的头像</h1>
 				    	<hr/>
+				    <p>
+				    	当前头像：<img src="${user.image }" width="70px" height="60px">
+				    </p>
+				    <form action="/my/updatephtno" enctype="multipart/form-data" method="post">
+				    	<input type="file" name="file"><br><br><br>
+				    	<input type="submit" value="修改头像">
+				    </form>
 				  </div>
 				</div>
-				
 			</div>
 		</div>
 	</div>

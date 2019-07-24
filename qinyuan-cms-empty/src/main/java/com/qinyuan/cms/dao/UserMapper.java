@@ -30,6 +30,8 @@ public interface UserMapper {
 
 	public void updateById(User user);
 
-	public List<Comment> commentsList();
+	public List<Comment> commentsList(Integer id);
+
+	public void updatephtno(User user);
 	
 }

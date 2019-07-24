@@ -14,10 +14,11 @@
     <result column="xingzuo" jdbcType="VARCHAR" property="xingzuo" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="zuoyouming" jdbcType="VARCHAR" property="zuoyouming" />
+     <result column="image" jdbcType="VARCHAR" property="image" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, username, password, nickname, birthday, gender, locked, created, updated, xingzuo, address, zuoyouming
+    id, username, password, nickname, birthday, gender, locked, created, updated, xingzuo, address, zuoyouming, image
   </sql>
   
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -118,7 +119,21 @@
   	</where>
   </update>
   
-    <select id="commentsList"  resultType="com.qinyuan.cms.domain.Comment">
-  		select * from cms_comment where user_id=#{id}
+    <select id="commentsList"  resultType="com.qinyuan.cms.domain.Comment" parameterType="int">
+  		select c.*,u.nickname as nickname,a.title as title 
+  		from cms_comment c , cms_user u ,cms_article a 
+  		where  c.user_id=u.id and a.id=c.blog_id and c.user_id=#{id} 
+  		ORDER BY c.displayTime desc
     </select>
+    <update id="updatephtno" parameterType="com.qinyuan.cms.domain.User">
+    	update cms_user
+    	<set>
+  			<if test="image != null">
+      		  image=#{image,jdbcType=VARCHAR},
+    		</if>
+  		</set>
+  		<where>
+  			id=#{id,jdbcType=INTEGER}
+  		</where>
+    </update>
 </mapper>

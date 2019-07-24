@@ -53,7 +53,7 @@ public class User implements Serializable {
 	
 	private String address;
 	
-	
+	private String image;
 	//------------------------------------------------------------------------
 	
 	public User() {
@@ -72,6 +72,14 @@ public class User implements Serializable {
 	
 	//------------------------------------------------------------------------
 
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public Integer getId() {
 		return id;
@@ -195,6 +203,16 @@ public class User implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password="
+				+ password + ", nickname=" + nickname + ", birthday="
+				+ birthday + ", gender=" + gender + ", locked=" + locked
+				+ ", created=" + created + ", updated=" + updated
+				+ ", xingzuo=" + xingzuo + ", zuoyouming=" + zuoyouming
+				+ ", address=" + address + ", image=" + image + "]";
 	}
 	
 }

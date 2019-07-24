@@ -66,7 +66,7 @@
 						<div class="media">
 						  <div class="media-left">
 						    <a href="#">
-						      <img class="media-object" src="/images/default_avatar.png" style="max-height: 50px" alt="...">
+						      <img class="media-object" src="${_LOGIN_USER_.image }" style="max-height: 50px" alt="...">
 						    </a>
 						  </div>
 						  <div class="media-body">

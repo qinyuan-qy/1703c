@@ -20,7 +20,7 @@
     <c:when test="${_LOGIN_USER_  != null}">
    	 <li class="nav-item">
    		<a class="nav-link" href="/my/home">
-		<img alt="" src="/images/default_avatar.png" style="max-height: 2.5rem" class="rounded img-fluid">
+		<img alt="" src="${_LOGIN_USER_.image}" style="max-height: 2.5rem" class="rounded img-fluid">
    		</a>
    	 </li>
    	 <li class="nav-item">
