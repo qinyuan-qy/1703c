@@ -41,7 +41,32 @@
 			<div class="col-md-9">
 				<div class="panel panel-default">
 				  <div class="panel-body">
-				    右边区域
+				   <h1> 个人信息设置</h1>
+				  </div>
+				  <div class="panel-body">
+				  	<form action="/my/user/save" method="post" >
+				    	<input type="hidden" value="${user.id}" name="id">
+				    	<div><br></div>
+				    	<p>
+				    		昵称：
+				    		<input name="nickname" value="${user.nickname}" class="form-control">
+				    	</p>
+				    	<p>
+				    		星座：
+				    		<input name="xingzuo" value="${user.xingzuo}" class="form-control" >
+				    	</p>
+				    	<p>
+				    		地址：
+				    		<input name="address" value="${user.address}" class="form-control" >
+				    	</p>
+				    	<p>
+				    		座右铭：
+				    		<input name="zuoyouming" value="${user.zuoyouming}" class="form-control" >
+				    	</p>
+				    	<p>
+				    		<button type="submit" class="btn btn-info btn-block">保存</button> 
+				    	</p>
+				    </form>
 				  </div>
 				</div>
 				

@@ -47,6 +47,12 @@ public class User implements Serializable {
 	/**更新时间*/
 	private Date updated;
 	
+	private String xingzuo;
+	
+	private String zuoyouming;
+	
+	private String address;
+	
 	
 	//------------------------------------------------------------------------
 	
@@ -138,9 +144,33 @@ public class User implements Serializable {
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-
+	
 	
 	//--------------------------------------------------------------------------------
+
+	public String getXingzuo() {
+		return xingzuo;
+	}
+
+	public void setXingzuo(String xingzuo) {
+		this.xingzuo = xingzuo;
+	}
+
+	public String getZuoyouming() {
+		return zuoyouming;
+	}
+
+	public void setZuoyouming(String zuoyouming) {
+		this.zuoyouming = zuoyouming;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public int hashCode() {

@@ -1,5 +1,7 @@
 package com.qinyuan.cms.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,13 @@ public class CommentServiceImpl implements CommentService {
 	private CommentMapper commentMapper;
 
 	@Override
-	public void save(Comment comment) {
-		commentMapper.save(comment);
+	public int save(Comment comment) {
+		return commentMapper.save(comment);
+	}
+
+	@Override
+	public List<Comment> blogs(Integer id) {
+		// TODO Auto-generated method stub
+		return commentMapper.blogs(id);
 	}
 }

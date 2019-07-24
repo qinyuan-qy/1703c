@@ -9,6 +9,7 @@ import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
 import com.qinyuan.cms.domain.Channel;
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.User;
 
 /**
@@ -42,6 +43,8 @@ public interface ArticleService {
 	public abstract void save(Article article);
 
 	public abstract int deleteByPrimaryKey(Integer id);
+
+	public abstract List<Comment> selectById(Integer id);
 
 	
 

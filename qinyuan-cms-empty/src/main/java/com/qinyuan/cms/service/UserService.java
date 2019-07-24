@@ -1,5 +1,8 @@
 package com.qinyuan.cms.service;
 
+import java.util.List;
+
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.User;
 
 
@@ -18,4 +21,10 @@ public interface UserService {
 	public abstract User get(String username);
 
 	public int count(User user);
+
+	public abstract void updateById(User user);
+
+	public abstract User selectById(Integer id);
+
+	public abstract List<Comment> commentsList();
 }

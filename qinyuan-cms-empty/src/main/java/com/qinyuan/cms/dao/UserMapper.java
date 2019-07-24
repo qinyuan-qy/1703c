@@ -3,6 +3,9 @@
  */
 package com.qinyuan.cms.dao;
 
+import java.util.List;
+
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.User;
 
 /**
@@ -24,5 +27,9 @@ public interface UserMapper {
 	public User selectByUsername(String username);
 
 	public int count(User user);
+
+	public void updateById(User user);
+
+	public List<Comment> commentsList();
 	
 }

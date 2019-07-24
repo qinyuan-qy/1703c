@@ -374,5 +374,7 @@
        delete from cms_article where id = #{id,jdbcType=INTEGER}
     </delete>
 	
-	
+	<select id="selectById" parameterType="int" resultType="com.qinyuan.cms.domain.Comment">
+		select c.*,u.nickname as nickname from cms_comment c left join cms_user u on c.user_id=u.id where c.blog_id=#{id}
+	</select>
 </mapper>

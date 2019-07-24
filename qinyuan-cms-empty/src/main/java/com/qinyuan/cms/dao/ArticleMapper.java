@@ -12,6 +12,7 @@ import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
 import com.qinyuan.cms.domain.Channel;
+import com.qinyuan.cms.domain.Comment;
 
 
 /**
@@ -67,6 +68,9 @@ public interface ArticleMapper {
 
 
 	public int deleteByPrimaryKey(Integer id);
+
+
+	public List<Comment> selectById(Integer id);
 
 
 

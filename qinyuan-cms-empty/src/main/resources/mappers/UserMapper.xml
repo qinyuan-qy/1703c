@@ -11,10 +11,13 @@
     <result column="locked" jdbcType="BIT" property="locked" />
     <result column="created" jdbcType="TIMESTAMP" property="created" />
     <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="xingzuo" jdbcType="VARCHAR" property="xingzuo" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zuoyouming" jdbcType="VARCHAR" property="zuoyouming" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, username, password, nickname, birthday, gender, locked, created, updated
+    id, username, password, nickname, birthday, gender, locked, created, updated, xingzuo, address, zuoyouming
   </sql>
   
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -94,5 +97,28 @@
       </if>
     </trim>
   </insert>
+  <update id="updateById" parameterType="com.qinyuan.cms.domain.User">
+  	update cms_user
+  	<set>
+  		<if test="nickname != null">
+      	  nickname=#{nickname,jdbcType=VARCHAR},
+    	</if>
+    	<if test="xingzuo != null">
+      	  xingzuo=#{xingzuo,jdbcType=VARCHAR},
+    	</if>
+    	<if test="zuoyouming != null">
+      	  zuoyouming=#{zuoyouming,jdbcType=VARCHAR},
+    	</if>
+    	<if test="address != null">
+      	  address=#{address,jdbcType=VARCHAR}
+    	</if>
+  	</set>
+  	<where>
+  		id=#{id,jdbcType=INTEGER}
+  	</where>
+  </update>
   
+    <select id="commentsList"  resultType="com.qinyuan.cms.domain.Comment">
+  		select * from cms_comment where user_id=#{id}
+    </select>
 </mapper>

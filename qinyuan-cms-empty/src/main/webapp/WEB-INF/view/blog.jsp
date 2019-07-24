@@ -1,4 +1,4 @@
-,<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" type="text/css" href="/libs/font-awesome/css/font-awesome.css">
@@ -70,18 +70,18 @@
 						    </a>
 						  </div>
 						  <div class="media-body">
-						    <h4 class="media-heading">${comment.author.nickname}：</h4>
+						    <h4 class="media-heading">${comment.nickname}：</h4>
 						    <p>${comment.content}</p>
-						    <p>评论时间：<fmt:formatDate value="${comment.diplayTime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+						    <p>评论时间：<fmt:formatDate value="${comment.displayTime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 						  </div>
 						</div>
 					</c:forEach>
 				</div>
 				<div>
-					<form id="comment" name="comment" method="post">
-						<input type="hidden" name="blog.id" id="blogId" value="${ blog.id}"/>
+					<form id="comment" name="comment" method="post" >
+						<input type="hidden" name="article.id" value="${ blog.id}"/>
 						<textarea id="content" name="content" cols="3" class="form-control" placeholder="${_LOGIN_USER_.nickname}发表评论"></textarea>
-						<button type="submit" class="btn btn-info btn-block">发表</button>
+						<button type="submit" class="btn btn-info btn-block" >发表</button>
 					</form>
 				</div>
 				<br/>
@@ -124,40 +124,25 @@
 		$(document).ready(function(){
 			if(authorNickname.length==0){
 				$("#content").attr("disabled", "disabled").attr("placeholder", "请登录后发表评论");
+				return false;
 			}
-			
-			$("#comment").submit(function(){
+		  $("#comment").submit(function(){
 				var content = $("#content").val();
-				//var blogId = $("#blogId").val();
-				
 				if(content.length==0){
 					alert('请填写评论内容');
 					return false;
 				}
-				
-				//$(this).serialize():表单序列化
 				$.ajax({
-					//url:'/my/comment/' + '${blog.id}',
 					url:'/comment/save',
 					type:'post',
 					data:$(this).serialize(),
-					/* error: function(){alert('发表失败');}, */
 					success:function(data){
-						console.log(data);
-						if(data.status){
-							alert(data.msg);
-							var comments = $("#comments").html();
-							$("#comments").html(template.replace("{{comment_content}}", content) + comments);
-							$("#content").val("");
-						}else{
-							alert(data.msg);
-						}
-					}
-					
+						location.href="/article?id="+'${blog.id}';
+					},
+					dataType:"json"
 				});
 				return false;
 			});
-			
              $("#mir").click(function(){
     			
 				if(authorNickname.length==0){

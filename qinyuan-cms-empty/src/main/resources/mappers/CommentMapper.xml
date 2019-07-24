@@ -4,7 +4,7 @@
 <mapper namespace="com.qinyuan.cms.dao.CommentMapper">
 
   
-  <insert id="save" parameterType="comment">
+  <insert id="save" parameterType="com.qinyuan.cms.domain.Comment">
     insert into cms_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="content != null">
@@ -36,4 +36,7 @@
       </if>
     </trim>
   </insert>
+  <select id="blogs" parameterType="int" resultType="com.qinyuan.cms.domain.Comment">
+  	select * from cms_comment where user_id=#{id}
+  </select>
 </mapper>

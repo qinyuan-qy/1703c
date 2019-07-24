@@ -29,21 +29,11 @@ public class CommentController {
 	
 	@RequestMapping("save")
 	@ResponseBody
-	public Result save(Comment comment,HttpSession seesion){
+	public Integer save(Comment comment,HttpSession seesion){
 		comment.setDisplayTime(new Date());
 		User user = (User) seesion.getAttribute(Constant.LOGIN_USER);
 		comment.setUser(user);
-		Result result = new Result();
-		try {
-			//Result:专门用于给客户端相应的消息类
-			commentService.save(comment);
-			result.setStatus(true);
-			result.setMsg("评论成功");
-		} catch (Exception e) {
-			result.setStatus(false);
-			result.setMsg("评论失败");
-			e.printStackTrace();
-		}
-		return result;
+		int num = commentService.save(comment);
+		return num;
 	}
 }

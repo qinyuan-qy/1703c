@@ -3,15 +3,12 @@
  */
 package com.qinyuan.cms.web.controllers;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
-import com.qinyuan.cms.domain.Category;
-import com.qinyuan.cms.domain.Channel;
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
+import com.qinyuan.cms.service.UserService;
 import com.qinyuan.cms.utils.FileUploadUtil;
 import com.qinyuan.cms.utils.PageHelpUtil;
 import com.qinyuan.cms.web.Constant;
@@ -46,6 +42,9 @@ public class UserController {
 
 	@Autowired
 	ArticleService articleService;
+	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(){
@@ -113,4 +112,26 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping("/user/save")
+	public String usersave(User user){
+		userService.updateById(user);
+		return "redirect:/my/userinfo";
+	}
+	
+	@RequestMapping("/userinfo")
+	public String userinfo(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		User userresult = userService.selectById(user.getId());
+		model.addAttribute("user", userresult);
+		return "user-space/profile";
+	}
+	
+	@RequestMapping("/comments")
+	public String commentsList(Model model){
+		System.out.println(1);
+		List<Comment> list= userService.commentsList();
+		model.addAttribute("comments", list);
+		return "user-space/comments";
+	}
 }

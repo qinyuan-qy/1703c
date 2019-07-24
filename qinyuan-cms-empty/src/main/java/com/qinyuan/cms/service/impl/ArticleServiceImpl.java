@@ -18,6 +18,7 @@ import com.qinyuan.cms.dao.ArticleMapper;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
 import com.qinyuan.cms.domain.Channel;
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.service.ArticleService;
 
 /**
@@ -79,6 +80,12 @@ public class ArticleServiceImpl implements ArticleService {
 	public int deleteByPrimaryKey(Integer id) {
 		// TODO Auto-generated method stub
 		return articleMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Comment> selectById(Integer id) {
+		// TODO Auto-generated method stub
+		return articleMapper.selectById(id);
 	}
 	
 	

@@ -3,11 +3,14 @@
  */
 package com.qinyuan.cms.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.qinyuan.cms.dao.UserMapper;
+import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.UserService;
 
@@ -46,5 +49,21 @@ public class UserServiceImpl implements UserService {
 		return userMapper.count(conditions);
 	}
 
+	@Override
+	public void updateById(User user) {
+		userMapper.updateById(user);
+		
+	}
+	
+	@Override
+	public User selectById(Integer id) {
+		return userMapper.selectById(id);
+	}
+
+	@Override
+	public List<Comment> commentsList() {
+		// TODO Auto-generated method stub
+		return userMapper.commentsList();
+	}
 	
 }

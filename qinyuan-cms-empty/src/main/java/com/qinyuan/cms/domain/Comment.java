@@ -9,6 +9,13 @@ public class Comment {
 	private Article article;
 	private Date displayTime;
 	private User user;
+	private String nickname;
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -39,5 +46,12 @@ public class Comment {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", content=" + content + ", article="
+				+ article + ", displayTime=" + displayTime + ", user=" + user
+				+ ", nickname=" + nickname + "]";
+	}
+	
 	
 }
