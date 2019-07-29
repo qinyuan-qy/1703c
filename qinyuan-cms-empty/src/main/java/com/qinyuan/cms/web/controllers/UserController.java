@@ -3,6 +3,7 @@
  */
 package com.qinyuan.cms.web.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Comment;
+import com.qinyuan.cms.domain.Picture;
 import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
 import com.qinyuan.cms.service.UserService;
@@ -92,6 +95,7 @@ public class UserController {
 		if(article.getId() != null){
 			articleService.updateByKey(article);
 		}else{
+			article.setWts(0);
 			article.setHits(0);
 			article.setHot(true);
 			article.setStatus(1);
@@ -108,16 +112,20 @@ public class UserController {
 		
 	}
 	@RequestMapping("/blog/remove")
-	@ResponseBody
-	public Integer remove(Integer id){
-		int num = articleService.deleteByPrimaryKey(id);
-		return num;
+	public String remove(Integer id){
+		Article article = new Article();
+		article.setId(id);
+		article.setDeleted(true);
+		 articleService.updateByKey(article);
+		return "/my/blogs";
 		
 	}
 	
 	@RequestMapping("/user/save")
-	public String usersave(User user){
+	public String usersave(User user,HttpServletRequest request){
 		userService.updateById(user);
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		u.setGender(user.getGender());
 		return "redirect:/my/userinfo";
 	}
 	
@@ -141,13 +149,7 @@ public class UserController {
 		model.addAttribute("pageList", page2);
 		return "user-space/comments";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping("/profile/avatar")
 	public String avatar(HttpServletRequest request,Model model){
 		
@@ -166,6 +168,49 @@ public class UserController {
 		userService.updatephtno(user);
 		user1.setImage(upload);
 		return "redirect:/my/profile/avatar";
+		
+	}
+	
+	@RequestMapping("/picture")
+	public String picture(){
+		return "user-space/picture";
+	}
+	
+	@RequestMapping("/blog/picture")
+	public String pictures(Article article,MultipartFile phtno,HttpServletRequest request,MultipartFile[] file,String[] describe){
+		String upload1 = FileUploadUtil.upload(request, phtno);
+		article.setPicture(upload1);
+		List<Picture> list = new ArrayList<Picture>();
+		for (int i = 0; i < describe.length; i++) {
+			Picture picture = new Picture();
+			String upload = FileUploadUtil.upload(request, file[i]);
+			if(!upload.equals("")){
+				picture.setPicture(upload);
+			}
+			if(!describe.equals("")){
+				picture.setDescribe(describe[i]);
+			}
+			list.add(picture);
+		}
+		if(list!=null){
+			article.setContent(JSON.toJSONString(list));
+		}
+		if(article.getId() != null){
+			articleService.updateByKey(article);
+		}else{
+			article.setWts(1);
+			article.setHits(0);
+			article.setHot(true);
+			article.setStatus(1);
+			article.setDeleted(false);
+			article.setCreated(new Date());
+			
+			User user = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+			article.setAuthor(user);
+			
+			articleService.save(article);
+		}
+		return "redirect:/my/picture";
 		
 	}
 }

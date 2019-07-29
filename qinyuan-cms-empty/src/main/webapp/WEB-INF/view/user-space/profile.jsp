@@ -1,4 +1,6 @@
+<%@page import="com.qinyuan.cms.metas.Gender"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -49,19 +51,24 @@
 				    	<div><br></div>
 				    	<p>
 				    		昵称：
-				    		<input name="nickname" value="${user.nickname}" class="form-control">
+				    		<input type="text" name="nickname" value="${user.nickname}" class="form-control">
+				    	</p>
+				    	<p>
+				    		性别：
+				    		<input type="radio" name="gender" value="<%=Gender.MALE %>" <c:if test="${_LOGIN_USER_.gender=='MALE' }">checked="checked"</c:if>>先生
+				    		<input type="radio" name="gender" value="<%=Gender.FAMALE %>" <c:if test="${_LOGIN_USER_.gender=='FAMALE' }">checked="checked"</c:if>>女士
 				    	</p>
 				    	<p>
 				    		星座：
-				    		<input name="xingzuo" value="${user.xingzuo}" class="form-control" >
+				    		<input type="text" name="xingzuo" value="${user.xingzuo}" class="form-control" >
 				    	</p>
 				    	<p>
 				    		地址：
-				    		<input name="address" value="${user.address}" class="form-control" >
+				    		<input type="text" name="address" value="${user.address}" class="form-control" >
 				    	</p>
 				    	<p>
 				    		座右铭：
-				    		<input name="zuoyouming" value="${user.zuoyouming}" class="form-control" >
+				    		<input type="text" name="zuoyouming" value="${user.zuoyouming}" class="form-control" >
 				    	</p>
 				    	<p>
 				    		<button type="submit" class="btn btn-info btn-block">保存</button> 

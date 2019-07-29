@@ -3,6 +3,7 @@ package com.qinyuan.cms.service;
 import java.util.List;
 
 import com.qinyuan.cms.domain.Comment;
+import com.qinyuan.cms.domain.Picture;
 import com.qinyuan.cms.domain.User;
 
 
@@ -29,4 +30,6 @@ public interface UserService {
 	public abstract List<Comment> commentsList(Integer id);
 
 	public abstract void updatephtno(User user);
+
+	public abstract void pictures(Picture picture);
 }

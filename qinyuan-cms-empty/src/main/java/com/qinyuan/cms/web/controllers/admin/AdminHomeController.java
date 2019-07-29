@@ -26,6 +26,8 @@ public class AdminHomeController {
 	
 	@RequestMapping({"/", "/index"})
 	public String home(){
+		
+		
 		return "admin/home";
 	}
 }

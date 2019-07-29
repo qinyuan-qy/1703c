@@ -65,13 +65,15 @@ public class Article implements Serializable {
 	/**更新时间**/
 	private Date updated;
 
+	private int wts;
 	
+	private String style;
 	//---------------------------------------------------------------------
-
+	
 	public Article() {
 		super();
 	}
-	
+
 	public Article(Integer id) {
 		super();
 		this.id = id;
@@ -79,7 +81,22 @@ public class Article implements Serializable {
 
 
 	//---------------------------------------------------------------------
+	public int getWts() {
+		return wts;
+	}
+
+	public void setWts(int wts) {
+		this.wts = wts;
+	}
 	
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
 	public Integer getId() {
 		return id;
 	}

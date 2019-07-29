@@ -3,9 +3,11 @@
  */
 package com.qinyuan.cms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.qinyuan.cms.domain.Comment;
+import com.qinyuan.cms.domain.Picture;
 import com.qinyuan.cms.domain.User;
 
 /**
@@ -33,5 +35,7 @@ public interface UserMapper {
 	public List<Comment> commentsList(Integer id);
 
 	public void updatephtno(User user);
+
+	public void pictures(String json);
 	
 }

@@ -111,7 +111,10 @@
       	  zuoyouming=#{zuoyouming,jdbcType=VARCHAR},
     	</if>
     	<if test="address != null">
-      	  address=#{address,jdbcType=VARCHAR}
+      	  address=#{address,jdbcType=VARCHAR},
+    	</if>
+    	<if test="gender != null">
+      	  gender=#{gender.ordinal,jdbcType=INTEGER}
     	</if>
   	</set>
   	<where>
@@ -136,4 +139,5 @@
   			id=#{id,jdbcType=INTEGER}
   		</where>
     </update>
+    
 </mapper>

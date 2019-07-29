@@ -24,6 +24,8 @@
     
     <result column="category_id" property="category.id" jdbcType="INTEGER"/>
     <result column="category_name" property="category.name" jdbcType="VARCHAR"/>
+     <result column="wts" property="wts" jdbcType="INTEGER"/>
+     <result column="style" property="style" jdbcType="VARCHAR"/>
     
     <!-- 多对一查询自动映射实体 
     <association property="channel">
@@ -72,10 +74,10 @@
   </sql>
   
   <sql id="Base_Column_List">
-    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated
+    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated 
   </sql>
   <sql id="Base_Column_Lob">
-    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated, content
+    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated, content 
   </sql>
   
   <insert id="save" parameterType="com.qinyuan.cms.domain.Article">
@@ -120,6 +122,12 @@
       <if test="content != null">
         content,
       </if>
+      <if test="wts != null">
+        wts,
+      </if>
+      <if test="style != null">
+        style,
+      </if>
     </trim>
  
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -162,12 +170,18 @@
       <if test="content != null">
         #{content,jdbcType=CLOB},
       </if>
+       <if test="wts != null">
+        #{wts,jdbcType=INTEGER},
+      </if>
+      <if test="style != null">
+        #{style,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <!-- 根据主键查询 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	SELECT 
-		b.id, b.title, b.picture, b.summary, b.content, b.channel_id, b.category_id, b.user_id, b.hits, b.hot, b.created, b.updated, 
+		b.id, b.title, b.picture, b.summary, b.content, b.channel_id, b.category_id, b.user_id, b.hits, b.hot, b.created, b.updated, b.wts, style,
 		u.id as author_id,
 		u.nickname as author_nickname,
 		ch.id as channel_id,
@@ -184,7 +198,7 @@
 
   <select id="selects" resultMap="BaseResultMap">
 	SELECT 
-		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated, 
+		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated,style, 
 		u.id as author_id,
 		u.nickname as author_nickname,
 		ch.id as channel_id,
@@ -359,6 +373,9 @@
       <if test="updated != null">
        updated = #{updated,jdbcType=TIMESTAMP},
       </if>
+       <if test="deleted != null">
+       deleted = #{deleted,jdbcType=BIT},
+      </if>
       <if test="content != null">
        content = #{content,jdbcType=CLOB},
       </if>
@@ -375,6 +392,7 @@
     </delete>
 	
 	<select id="selectById" parameterType="int" resultType="com.qinyuan.cms.domain.Comment">
-		select c.*,u.nickname as nickname from cms_comment c left join cms_user u on c.user_id=u.id where c.blog_id=#{id}
+		select c.*,u.nickname as nickname from cms_comment c 
+		left join cms_user u on c.user_id=u.id where c.blog_id=#{id}
 	</select>
 </mapper>

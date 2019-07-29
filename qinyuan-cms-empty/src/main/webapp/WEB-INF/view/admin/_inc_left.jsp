@@ -25,9 +25,10 @@
           </div>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="/admin/categories">
+          <a class="nav-link" href="/admin/Article">
             <i class="fas fa-fw fa-folder"></i>
-            <span>文章管理</span></a>
+            <span>文章管理</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/categories">

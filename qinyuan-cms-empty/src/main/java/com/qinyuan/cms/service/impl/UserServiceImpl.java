@@ -3,14 +3,18 @@
  */
 package com.qinyuan.cms.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.qinyuan.cms.dao.UserMapper;
 import com.qinyuan.cms.domain.Comment;
+import com.qinyuan.cms.domain.Picture;
 import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.UserService;
 
@@ -70,6 +74,15 @@ public class UserServiceImpl implements UserService {
 	public void updatephtno(User user) {
 		
 		userMapper.updatephtno(user);
+	}
+
+	@Override
+	public void pictures(Picture picture) {
+		List<Picture> list = new ArrayList<Picture>();
+		list.add(picture);
+		String json = JSON.toJSONString(list);
+		userMapper.pictures(json);
+		
 	}
 	
 }

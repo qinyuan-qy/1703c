@@ -103,7 +103,7 @@
 						   </a>
 						  </div>
 						  <div class="media-body">
-						    <h3 class="media-heading article_title"><a href="/article?id=${article.id}">${article.title }</a></h3>
+						    <h3 class="media-heading article_title"><a href="/article?id=${article.id}" ><span style="${article.style }">${article.title }</span></a></h3>
 						    <p>${article.summary}</p>
 						    <p class="blog_item_footer">
 						    	<span class="glyphicon glyphicon-user" title="作者"></span>作者：${article.author.nickname}&nbsp;&nbsp; &nbsp;
@@ -135,7 +135,18 @@
 					<div class="card-body">
 						<ol>
 							<c:forEach items="${lastArticles}" var="article">
-							<li class="text-truncate"><a href="/article?id=${article.id}">${article.title}</a></li>
+							<li class="text-truncate"><a href="/article?id=${article.id}"  style="${article.style}">${article.title}</a></li>
+							</c:forEach>
+						</ol>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header">最新图片文章</div>
+					<div class="card-body">
+						<ol>
+							<c:forEach items="${picArticlesList}" var="article">
+							<li class="text-truncate"><a href="/article?id=${article.id}" style="${article.style}">${article.title}</a></li>
 							</c:forEach>
 						</ol>
 					</div>
