@@ -3,21 +3,14 @@
  */
 package com.qinyuan.cms.web.controllers;
 
-import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSONArray;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import com.qinyuan.cms.core.Page;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
@@ -25,11 +18,8 @@ import com.qinyuan.cms.domain.Channel;
 import com.qinyuan.cms.domain.Comment;
 import com.qinyuan.cms.domain.Picture;
 import com.qinyuan.cms.domain.Slide;
-import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
-import com.qinyuan.cms.service.ChannelCategoryService;
 import com.qinyuan.cms.service.SlideService;
-import com.qinyuan.cms.web.Constant;
 
 /**
  * 说明:首页
@@ -166,7 +156,6 @@ public class HomeController {
 	public String article(Integer id,Model model,HttpServletRequest request){
 		articleService.increaseHit(id);
 		Article article = articleService.selectByPrimaryKey(id);
-		
 		List<Comment> list = articleService.selectById(article.getId());
 		model.addAttribute("comments", list);
 		if(article.getWts()==1){

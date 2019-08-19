@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<link rel="stylesheet" type="text/css" href="/libs/font-awesome/css/font-awesome.css">
+
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -14,7 +14,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/blog.css"/>
-
+	<link rel="stylesheet" type="text/css" href="/libs/font-awesome/css/font-awesome.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

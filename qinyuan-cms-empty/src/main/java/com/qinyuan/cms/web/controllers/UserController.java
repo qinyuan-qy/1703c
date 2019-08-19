@@ -8,16 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
@@ -30,7 +27,6 @@ import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
 import com.qinyuan.cms.service.UserService;
 import com.qinyuan.cms.utils.FileUploadUtil;
-import com.qinyuan.cms.utils.FileUtil;
 import com.qinyuan.cms.utils.PageHelpUtil;
 import com.qinyuan.cms.web.Constant;
 
@@ -61,7 +57,7 @@ public class UserController {
 	public String profile(){
 		return "user-space/profile";
 	}
-	
+	//我的文章
 	@RequestMapping("/blogs")
 	public String blogs(Model model,HttpServletRequest request,HttpSession session, @RequestParam(required=false,defaultValue="1")Integer page){
 		Article article = new Article();
@@ -75,7 +71,7 @@ public class UserController {
 		model.addAttribute("pageList", page2);
 		return "user-space/blog_list";
 	}
-	
+	//修改文章
 	@RequestMapping("/blog/edit")
 	public String edit(Integer id,Model model){
 		
@@ -85,7 +81,7 @@ public class UserController {
 		return "user-space/blog_edit";
 		
 	}
-	
+	//发布文章
 	@RequestMapping("/blog/save")
 	public String save(Article article,MultipartFile file,HttpServletRequest request){
 		String upload = FileUploadUtil.upload(request, file);
@@ -111,6 +107,7 @@ public class UserController {
 		return "redirect:/my/blogs";
 		
 	}
+	//删除文章
 	@RequestMapping("/blog/remove")
 	public String remove(Integer id){
 		Article article = new Article();
@@ -120,7 +117,7 @@ public class UserController {
 		return "/my/blogs";
 		
 	}
-	
+	//修改个人设置
 	@RequestMapping("/user/save")
 	public String usersave(User user,HttpServletRequest request){
 		userService.updateById(user);
@@ -128,7 +125,7 @@ public class UserController {
 		u.setGender(user.getGender());
 		return "redirect:/my/userinfo";
 	}
-	
+	//回显个人设置
 	@RequestMapping("/userinfo")
 	public String userinfo(HttpServletRequest request,Model model){
 		
@@ -137,7 +134,7 @@ public class UserController {
 		model.addAttribute("user", userresult);
 		return "user-space/profile";
 	}
-	
+	//我的评论
 	@RequestMapping("/comment")
 	public String commentsList(Model model,HttpServletRequest request,@RequestParam(required=false,defaultValue="1")Integer page){
 		PageHelper.startPage(page,5);
@@ -149,7 +146,7 @@ public class UserController {
 		model.addAttribute("pageList", page2);
 		return "user-space/comments";
 	}
-
+	//
 	@RequestMapping("/profile/avatar")
 	public String avatar(HttpServletRequest request,Model model){
 		
@@ -158,6 +155,7 @@ public class UserController {
 		model.addAttribute("user", user2);
 		return "user-space/avatar";
 	}
+	//上传头像
 	@RequestMapping("/updatephtno")
 	public String updatephtno(MultipartFile file,HttpServletRequest request){
 		User user1 = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
@@ -175,7 +173,7 @@ public class UserController {
 	public String picture(){
 		return "user-space/picture";
 	}
-	
+	//发布图片
 	@RequestMapping("/blog/picture")
 	public String pictures(Article article,MultipartFile phtno,HttpServletRequest request,MultipartFile[] file,String[] describe){
 		String upload1 = FileUploadUtil.upload(request, phtno);
