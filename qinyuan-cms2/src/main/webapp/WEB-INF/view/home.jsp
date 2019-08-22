@@ -103,7 +103,7 @@
 						    </a>
 						  </div>
 						  <div class="media-body">
-						    <h3 class="media-heading article_title"><a href="/article/${article.id}">${article.title }</a></h3>
+						    <h3 class="media-heading article_title"><a href="/article?aid=${article.id}">${article.title }</a></h3>
 						    <p>${article.summary}</p>
 						    <p class="blog_item_footer">
 						    	<span class="glyphicon glyphicon-user" title="作者"></span>作者：${article.author.nickname}&nbsp;&nbsp; &nbsp;

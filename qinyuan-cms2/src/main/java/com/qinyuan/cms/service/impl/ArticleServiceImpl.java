@@ -120,6 +120,12 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleMapper.delcang(map);
 	}
+
+	@Override
+	public Article articleById(Integer aid) {
+		// TODO Auto-generated method stub
+		return articleMapper.articleById(aid);
+	}
 	
 	
 }

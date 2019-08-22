@@ -91,4 +91,11 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping("/article")
+	public String article(Integer aid,Model model){
+		Article article = articleService.articleById(aid);
+		model.addAttribute("blog", article);
+		return "blog";
+	}
 }

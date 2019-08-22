@@ -62,7 +62,7 @@
 				    				</td>
 				    			</tr>
 				    		</c:forEach>
-				    		<tr>
+				    		<%-- <tr>
 				    			<td colspan="5">
 				    				共${pages }页&nbsp;&nbsp;&nbsp;&nbsp;当前${pageNum }/${pages }页     共${total }条数据
 				    				<a href="/my/cang?pageNum=1"><input type="button" value="首页"></a>
@@ -70,7 +70,7 @@
 				    				<a href="/my/cang?pageNum=${pageNum==pages?pages:pageNum+1 }"><input type="button" value="下一页"></a>
 				    				<a href="/my/cang?pageNum=${pages }"><input type="button" value="尾页"></a>
 				    			</td>
-				    		</tr>
+				    		</tr> --%>
 				    	</table>
 				  </div>
 				</div>

@@ -49,6 +49,8 @@ public interface ArticleService {
 	public abstract List<Article> listCang();
 
 	public abstract int delcang(HashMap<String, Object> map);
+
+	public abstract Article articleById(Integer aid);
 	
 
 }

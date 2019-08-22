@@ -84,6 +84,9 @@ public interface ArticleMapper {
 
 
 	public int delcang(HashMap<String, Object> map);
+
+
+	public Article articleById(Integer aid);
 	
 	
 }
