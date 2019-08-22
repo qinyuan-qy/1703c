@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.bawei</groupId>
-	<artifactId>bawei-cms</artifactId>
+	<groupId>com.wangxiaokuan</groupId>
+	<artifactId>cms_wangxiaokuan</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>CMS内容管理系统</name>
@@ -18,6 +18,47 @@
 
 	<!-- 依赖 -->
 	<dependencies>
+		<!-- 爬虫的依赖 -->
+		<dependency>
+  <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+  			<groupId>org.jsoup</groupId>
+  			<artifactId>jsoup</artifactId>
+  			<version>1.10.2</version>
+		</dependency>
+		<!-- ik分词器 -->
+		<dependency>
+		    <groupId>com.janeluo</groupId>
+		    <artifactId>ikanalyzer</artifactId>
+		    <version>2012_u6</version>
+		    <exclusions>
+        	<exclusion>
+        		<groupId>org.apache.lucene</groupId>  
+        		<artifactId>lucene-core</artifactId>  
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.apache.lucene</groupId>  
+        		<artifactId>lucene-queries</artifactId>  
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.apache.lucene</groupId>  
+        		<artifactId>lucene-sandbox</artifactId>  
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.apache.lucene</groupId>  
+        		<artifactId>lucene-analyzers-common</artifactId>  
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.apache.lucene</groupId>  
+        		<artifactId>lucene-queryparser</artifactId>  
+        	</exclusion>
+        </exclusions>
+	</dependency> 
+		<!-- es的依赖信息 -->
+		<dependency>
+  			<groupId>org.springframework.data</groupId>
+  			<artifactId>spring-data-elasticsearch</artifactId>
+  			<version>2.1.2.RELEASE</version>
+		</dependency> 
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -84,7 +125,7 @@
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
-			<version>0.9.5.2</version>
+			<version>0.9.5.4</version>
 		</dependency>
 		<!-- <dependency>
 			<groupId>com.jolbox</groupId>
@@ -173,59 +214,18 @@
 				</exclusion>
 			</exclusions> -->
 		</dependency>
+		<!-- redis依赖 -->
+		  
 		<dependency>
-	
-		    <groupId>com.janeluo</groupId>
-		    <artifactId>ikanalyzer</artifactId>
-		    <version>2012_u6</version>
-		    <exclusions>
-		        	<exclusion>
-		        		<groupId>org.apache.lucene</groupId>  
-		        		<artifactId>lucene-core</artifactId>  
-		        	</exclusion>
-		        	<exclusion>
-		        		<groupId>org.apache.lucene</groupId>  
-		        		<artifactId>lucene-queries</artifactId>  
-		        	</exclusion>
-		        	<exclusion>
-		        		<groupId>org.apache.lucene</groupId>  
-		        		<artifactId>lucene-sandbox</artifactId>  
-		        	</exclusion>
-		        	<exclusion>
-		        		<groupId>org.apache.lucene</groupId>  
-		        		<artifactId>lucene-analyzers-common</artifactId>  
-		        	</exclusion>
-		        	<exclusion>
-		        		<groupId>org.apache.lucene</groupId>  
-		        		<artifactId>lucene-queryparser</artifactId>  
-		        	</exclusion>
-		        </exclusions>
-		
-		</dependency> 
-	
-		<!-- 爬虫的依赖 -->
-		<dependency>
-  <!-- jsoup HTML parser library @ http://jsoup.org/ -->
-  			<groupId>org.jsoup</groupId>
-  			<artifactId>jsoup</artifactId>
-  			<version>1.10.2</version>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
 		</dependency>
-		
-	
-		<!-- es的依赖信息 -->
-		
 		<dependency>
-  			<groupId>org.springframework.data</groupId>
-  			<artifactId>spring-data-elasticsearch</artifactId>
-  			<version>2.1.2.RELEASE</version>
-		</dependency> 
-	
-		<dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.44</version>
-        </dependency>
-	
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.8.7.RELEASE</version>
+		</dependency>
 		<!-- kafka的依赖信息 -->
 		
 		<dependency>
@@ -254,20 +254,11 @@
 		        </exclusion>
 		    </exclusions>
 		</dependency>
-		
-		<!-- redis依赖 -->
-		  
 		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.9.0</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.6</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.8.7.RELEASE</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
@@ -281,7 +272,6 @@
 		<finalName>${pom.artifactId}</finalName>
 
 		<plugins>
-
 			<!-- 编译插件： 覆盖Maven的编译插件，设置编译级别为1.8 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -299,7 +289,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<port>80</port>
+					<port>8090</port>
 					<path>/</path>
 				</configuration>
 			</plugin>

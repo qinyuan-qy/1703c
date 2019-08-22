@@ -33,10 +33,10 @@
     	<id column="category_id" property="id" jdbcType="INTEGER"/>
     	<result column="name" property="name" jdbcType="VARCHAR" />
     </association>-->
-    <association property="author">
+   <!-- <association property="author">
     	<id column="user_id" property="id" jdbcType="INTEGER"/>
     	<result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    </association>
+    </association>-->
   </resultMap>
   
   
@@ -371,7 +371,7 @@
     <delete id="delcang" parameterType="map">
     	delete from cms_cang where aid=#{aid} and uid=#{uid}
     </delete>
-    <select id="articleById" resultMap="BaseResultMap" parameterType="int">
+    <select id="articleById" resultType="com.qinyuan.cms.domain.Article" parameterType="int">
    		SELECT * from cms_article where id=#{aid}
     </select>
 </mapper>

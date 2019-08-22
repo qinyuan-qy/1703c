@@ -50,7 +50,7 @@
 				<div class="content">
 					${blog.content}
 				</div>
-				<div class="text-right">发布时间：<fmt:formatDate value="${blog.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+				<div class="text-right">发布时间：<fmt:formatDate value="${blog.created}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
 				
 				<hr/>
 				

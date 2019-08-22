@@ -95,7 +95,9 @@ public class HomeController {
 	@RequestMapping("/article")
 	public String article(Integer aid,Model model){
 		Article article = articleService.articleById(aid);
+		List<Article> blogs = articleService.hotarticle();
 		model.addAttribute("blog", article);
+		model.addAttribute("hitBlogs", blogs);
 		return "blog";
 	}
 }

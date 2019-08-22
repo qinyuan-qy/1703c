@@ -36,7 +36,7 @@
 	</bean>
 	
 	
-	<!--指定具体监听类的bean --> 
+	<!--指定具体监听类的bean -->
 	<bean id="messageListernerConsumerService"
 		class="com.qinyuan.cms.kafka.TestCMSKafka" />
 

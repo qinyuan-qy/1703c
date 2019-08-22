@@ -21,16 +21,13 @@
             http://www.springframework.org/schema/util 
             http://www.springframework.org/schema/util/spring-util.xsd 
             ">
-
-	<!-- 导入es的配置文件 -->
-	 <import resource="applicationContext-es.xml"/>
-
-	<!-- kafka配置信息 -->
-	<!-- <import resource="applicationContext-kafka-consumer.xml"/>    
-	<import resource="applicationContext-kafka-producer.xml"/> -->
-	
 	<!-- 导入redis的配置文件 -->
 	<import resource="applicationContext-redis.xml"/>
+	<!-- 导入kafka生产者 和消费者-->
+	 <!-- <import resource="applicationContext-kafka-consumer.xml"/>
+	<import resource="applicationContext-kafka-producer.xml"/> -->
+	<!-- 导入es配置文件 -->
+	<import resource="applicationContext-es.xml"/>
 	<!-- 第1步：加载配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	
@@ -63,7 +60,6 @@
 		<!-- 连接池的最大等待时间 -->
 		<!-- 连接池的 间隔时间 -->
 	</bean>
-	
 	<!-- 第4步：配置Mybatis -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -71,6 +67,17 @@
 		<!-- 配置mapper扫描文件的扫描位置 -->
 		<property name="mapperLocations">
 			<value>classpath:mappers/*.xml</value>
+		</property>
+		 <property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							
+						</value>
+					</property>
+				</bean>
+			</array>
 		</property>
 	</bean>
 	

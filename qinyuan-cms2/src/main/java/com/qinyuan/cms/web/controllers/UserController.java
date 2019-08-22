@@ -77,8 +77,8 @@ public class UserController {
 	}
 	@RequestMapping("/cang")
 	public String cang(Model model,@RequestParam(required=false,defaultValue="1")Integer pageNum){
-		List<Article> cang = articleService.listCang();
 		Page<Object> page = PageHelper.startPage(pageNum,3);
+		List<Article> cang = articleService.listCang();
 		model.addAttribute("cang", cang);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pages", page.getPages());
