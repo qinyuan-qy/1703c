@@ -24,7 +24,7 @@
     <result column="category_id" property="category.id" jdbcType="INTEGER"/>
     <result column="category_name" property="category.name" jdbcType="VARCHAR"/>
     
-    <!-- 多对一查询自动映射实体 
+    <!-- 多对一查询自动映射实体
     <association property="channel">
     	<id column="channel_id" property="id" jdbcType="INTEGER"/>
     	<result column="name" property="name" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
     <association property="category">
     	<id column="category_id" property="id" jdbcType="INTEGER"/>
     	<result column="name" property="name" jdbcType="VARCHAR" />
-    </association>-->
+    </association> -->
    <!-- <association property="author">
     	<id column="user_id" property="id" jdbcType="INTEGER"/>
     	<result column="nickname" property="nickname" jdbcType="VARCHAR" />
@@ -374,4 +374,35 @@
     <select id="articleById" resultType="com.qinyuan.cms.domain.Article" parameterType="int">
    		SELECT * from cms_article where id=#{aid}
     </select>
+    <delete id="delarticle" parameterType="int">
+    	delete from cms_article where id=#{aid}
+    </delete>
+    <select id="chaarticle" resultType="com.qinyuan.cms.domain.Article" parameterType="int">
+    	select * from cms_article where id=#{aid}
+    </select>
+    
+    <update id="update" parameterType="com.qinyuan.cms.domain.Article">
+    update cms_article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+      	content = #{content,jdbcType=CLOB},
+      </if>
+      <if test="channel != null">
+         channel_id = #{channel.id,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+         category_id = #{category.id,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -51,6 +51,14 @@ public interface ArticleService {
 	public abstract int delcang(HashMap<String, Object> map);
 
 	public abstract Article articleById(Integer aid);
+
+	public abstract int delarticle(Integer aid);
+
+	public abstract Article chaarticle(Integer aid);
+
+	public abstract int update(Article article);
+
+	public abstract void increaseHit(Integer aid);
 	
 
 }

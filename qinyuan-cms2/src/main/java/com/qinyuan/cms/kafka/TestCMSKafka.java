@@ -23,12 +23,16 @@ public class TestCMSKafka implements MessageListener<String, String>{
 	
 	@Override
 	public void onMessage(ConsumerRecord<String, String> record) {
-		
+		/*if(record.key().equals("addhis")){
+			String value = record.value();
+			articleService.increaseHit(Integer.parseInt(value));
+		}*/
 		String value = record.value();
 		Article article = JSON.parseObject(value, Article.class);
 		articleService.insert(article);
 		
 		articleEsDao.save(article);
+		
 	}
 
 }

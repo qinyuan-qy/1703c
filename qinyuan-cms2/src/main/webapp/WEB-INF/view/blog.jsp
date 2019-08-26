@@ -51,7 +51,7 @@
 					${blog.content}
 				</div>
 				<div class="text-right">发布时间：<fmt:formatDate value="${blog.created}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
-				
+					<input type="button" value="返回文章管理" onclick="fanhui()">
 				<hr/>
 				
 				<h4>最新评论</h4>
@@ -145,6 +145,9 @@
 				return false;
 			});
 		});
+		function fanhui(){
+			location.href="/admin/wenzhang";
+		}
 	</script>
   </body>
 </html>

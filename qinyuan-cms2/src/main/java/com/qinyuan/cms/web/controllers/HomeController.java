@@ -4,9 +4,15 @@
 package com.qinyuan.cms.web.controllers;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.data.redis.core.BoundHashOperations;
+import org.springframework.data.redis.core.BoundValueOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +23,10 @@ import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Category;
 import com.qinyuan.cms.domain.Channel;
 import com.qinyuan.cms.domain.Slide;
+import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.service.ArticleService;
 import com.qinyuan.cms.service.SlideService;
+import com.qinyuan.cms.web.Constant;
 
 /**
  * 说明:首页
@@ -36,6 +44,12 @@ public class HomeController {
 	
 	@Resource
 	private SlideService slideService;
+	
+	@Resource
+	private RedisTemplate redisTemplate;
+	
+	/*@Resource
+	private KafkaTemplate kafkaTemplate;*/
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(
@@ -92,12 +106,34 @@ public class HomeController {
 		return "home";
 	}
 	
+	@SuppressWarnings("all")
 	@RequestMapping("/article")
-	public String article(Integer aid,Model model){
-		Article article = articleService.articleById(aid);
-		List<Article> blogs = articleService.hotarticle();
-		model.addAttribute("blog", article);
-		model.addAttribute("hitBlogs", blogs);
-		return "blog";
+	public String article(Integer aid,Model model,HttpServletRequest request){
+		
+		/*User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
+		if(user == null){
+			return "redirect:/login";
+		}
+		BoundValueOperations ops = redisTemplate.boundValueOps("user"+aid+user.getId());
+		Object object = ops.get();
+		if(object!=null){
+			Article article = articleService.articleById(aid);
+			List<Article> blogs = articleService.hotarticle();
+			model.addAttribute("blog", article);
+			model.addAttribute("hitBlogs", blogs);
+			return "blog";
+		}else{*/
+			/*ops.set(""+aid);
+			ops.expire(1, TimeUnit.MINUTES);
+			kafkaTemplate.send("test","addhis",aid.toString());*/
+			Article article = articleService.articleById(aid);
+			List<Article> blogs = articleService.hotarticle();
+			model.addAttribute("blog", article);
+			model.addAttribute("hitBlogs", blogs);
+			return "blog";
+		/*}*/
+		
+		
 	}
+	
 }

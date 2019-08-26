@@ -70,6 +70,8 @@ public class Article implements Serializable {
 	
 	/**更新时间**/
 	private String keywords;
+	private Integer channel_id;
+	private Integer categroy_id;
 	
 	//---------------------------------------------------------------------
 
@@ -77,6 +79,22 @@ public class Article implements Serializable {
 		super();
 	}
 	
+	public Integer getChannel_id() {
+		return channel_id;
+	}
+
+	public void setChannel_id(Integer channel_id) {
+		this.channel_id = channel_id;
+	}
+
+	public Integer getCategroy_id() {
+		return categroy_id;
+	}
+
+	public void setCategroy_id(Integer categroy_id) {
+		this.categroy_id = categroy_id;
+	}
+
 	public Article(Integer id) {
 		super();
 		this.id = id;

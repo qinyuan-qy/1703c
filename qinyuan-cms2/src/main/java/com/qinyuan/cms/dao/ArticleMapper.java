@@ -87,6 +87,15 @@ public interface ArticleMapper {
 
 
 	public Article articleById(Integer aid);
+
+
+	public int delarticle(Integer aid);
+
+
+	public Article chaarticle(Integer aid);
+
+
+	public int update(Article article);
 	
 	
 }

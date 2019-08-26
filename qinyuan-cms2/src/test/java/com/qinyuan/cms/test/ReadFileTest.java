@@ -1,5 +1,6 @@
 package com.qinyuan.cms.test;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.qinyuan.cms.BaseTestCase;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.utils.FileUtil;
+import com.qinyuan.cms.utils.StreamUtil;
 
 public class ReadFileTest extends BaseTestCase{
 	
@@ -33,6 +35,19 @@ public class ReadFileTest extends BaseTestCase{
 		for (Article article : readContent) {
 			kafkaTemplate.send("test", "hh", JSON.toJSONString(article));
 		}
+		
+	}
+	
+	@SuppressWarnings("all")
+	@Test
+	public void ReadFile1() throws Exception{
+		File file = new File("D:\\testFile");
+		File[] files = file.listFiles();
+		for (File file2 : files) {
+			String list = StreamUtil.readStrFile(file2);
+			System.out.println(list);
+		}
+		
 		
 	}
 }

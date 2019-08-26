@@ -126,6 +126,30 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleMapper.articleById(aid);
 	}
+
+	@Override
+	public int delarticle(Integer aid) {
+		// TODO Auto-generated method stub
+		return articleMapper.delarticle(aid);
+	}
+
+	@Override
+	public Article chaarticle(Integer aid) {
+		// TODO Auto-generated method stub
+		return articleMapper.chaarticle(aid);
+	}
+
+	@Override
+	public int update(Article article) {
+		// TODO Auto-generated method stub
+		return articleMapper.update(article);
+	}
+
+	@Override
+	public void increaseHit(Integer aid) {
+		articleMapper.increaseHit(aid);
+		
+	}
 	
 	
 }

@@ -44,13 +44,13 @@
             <li class="breadcrumb-item">
               <a href="#">后台首页</a>
             </li>
-            <li class="breadcrumb-item active">文章管理</li>
+            <li class="breadcrumb-item active">查看文章详情</li>
           </ol>
-         		 <form action="/admin/articles" method="post">
+         		 <%-- <form action="/admin/articles" method="post">
          			<input type="hidden" name="currentpage">
          			标题：<input type="text" name="title" value="${title }">
          			<input type="submit" value="搜索">
-         		</form>
+         		</form> --%>
          		<!-- <input type="button" value="发布文章" onclick="fabu()"> -->
 			<!-- 表格 -->
 			<table class="table table-striped table-bordered table-hover">
@@ -60,33 +60,30 @@
 				    <th>点击量</th>
 				    <th>是否热门</th>
 				    <th>是否审核</th>
-				    <th>操作</th>
+				   <!--  <th>操作</th> -->
 				</tr>
-				<c:forEach items="${articles }" var="u">
 					<tr class="info">
-					    <th>${u.id }</th>
-					    <th><a href="/article?aid=${u.id }">${u.title}</a></th>
-					    <th>${u.hits }</th>
-					    <th>${u.hot }</th>
+					    <th>${articles.id }</th>
+					    <th>${articles.title}</th>
+					    <th>${articles.hits }</th>
+					    <th>${articles.hot }</th>
 					    <th>
-					    	<c:if test="${u.status ==1 }">
+					    	<c:if test="${articles.status ==1 }">
 					    		已审核
 					    	</c:if>
-					    	<c:if test="${u.status !=1 }">
+					    	<c:if test="${articles.status !=1 }">
 					    		未审核
 					    	</c:if>
 					    </th>
-					     <th>
+					    <%--  <th>
 					     	<input type="button" value="删除" onclick="del(${u.id})">
 					     	<input type="button" value="审核" onclick="shenhe(${u.id})">
 					     	<input type="button" value="收藏" onclick="shoucang(${u.id})">
 					     	<input type="button" value="查看" onclick="chakan(${u.id})">
-					     	<input type="button" value="修改" onclick="xiugai(${u.id})">
-					     </th>
+					     </th> --%>
 					</tr>
-				</c:forEach>
          	</table>
-         	${page }
+         	<%-- ${page } --%>
 
         </div>
         <!-- /.container-fluid -->
@@ -123,65 +120,7 @@
     		$("[name=currentpage]").val(i);
     		$("form").submit();
     	}
-    	function shenhe(id){
-    		$.post(
-    		
-    				"shenhe",
-    				{id:id},
-    				function(msg){
-    					if(msg>0){
-    						alert("审核成功");
-    						location.href="/admin/articles"
-    					}else{
-    						alert("审核失败");
-    					}
-    				},
-    				"json"
-    		)
-    	}
-    	function fabu(){
-    		location.href="/admin/toadd"
-    	}
-    	function shoucang(aid){
-    		$.post(
-    		
-    				"shoucang",
-    				{aid:aid},
-    				function(msg){
-    					if(msg==2){
-    						alert("该用户收藏文章成功");
-    						location.href="/admin/articles"
-    					}else if(msg==1){
-    						alert("该文章已被自己收藏，无法再次收藏");
-    					}else if(msg==0){
-    						alert("用户没有登陆，无法收藏");
-    					}
-    				},
-    				"json"
-    		)
-    	}
-    	function del(aid){
-    		$.post(
-    		
-    				"delarticle",
-    				{aid:aid},
-    				function(msg){
-    					if(msg>0){
-    						alert("删除成功")
-    						location.href="/admin/articles"
-    					}else{
-    						alert("删除失败")
-    					}
-    				},
-    				"json"
-    		)
-    	}
-    	function chakan(aid){
-    		location.href="chaarticle?aid="+aid;
-    	}
-    	function xiugai(aid){
-    		location.href="xiuarticle?aid="+aid;
-    	}
+    	
     </script>
   </body>
 
