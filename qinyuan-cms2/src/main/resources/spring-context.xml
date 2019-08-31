@@ -27,7 +27,7 @@
 	<!--  <import resource="applicationContext-kafka-consumer.xml"/>
 	<import resource="applicationContext-kafka-producer.xml"/> -->
 	<!-- 导入es配置文件 -->
-	<import resource="applicationContext-es.xml"/>
+	<!-- <import resource="applicationContext-es.xml"/> -->
 	<!-- 第1步：加载配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	

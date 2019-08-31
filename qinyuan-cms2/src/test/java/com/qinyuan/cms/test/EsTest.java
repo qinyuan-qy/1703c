@@ -54,9 +54,4 @@ public class EsTest extends BaseTestCase{
 			System.out.println(article);
 		}
 	}
-	@Test
-	public void ss(HttpServletRequest request){
-		User u = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
-		System.out.println(u.getId());
-	}
 }

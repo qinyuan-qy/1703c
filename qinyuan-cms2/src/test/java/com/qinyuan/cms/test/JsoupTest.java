@@ -20,28 +20,31 @@ public class JsoupTest extends BaseTestCase{
 	
 	@Test
 	public void jsoupTest() throws IOException{
-		 SSL.trustEveryone();
-		try {
+		SSL.trustEveryone();
+			int i=0;
 			Document document = Jsoup.connect("https://news.163.com/").get();
 			String html = document.html();
 			Document parse = Jsoup.parse(html);
 			Elements s = parse.select("a[href]");
 			Pattern pattern = Pattern.compile("[\\\\/:*?\"<>|]");
+		try {
 			if(s!=null){
 				for (Element a : s) {
 					String url = a.attr("href");
-					if(url.substring(0,5).equals("https")){
+					if(url.indexOf("https")!=-1){
 						if(url.indexOf("html")!=-1){
 							Document connect = Jsoup.connect(url).get();
 							String title = connect.title();
 							if(connect.getElementById("endText")!=null){
 								String text = connect.getElementById("endText").text();
 								String replaceAll = pattern.matcher(title).replaceAll("");
-								BufferedWriter bw = new BufferedWriter(new FileWriter("D:\\testFile\\"+replaceAll+".txt"));
-								bw.write(text);
-								bw.newLine();
-								bw.flush();
-								bw.close();
+								for (int j = 0; j < 14; j++) {
+									BufferedWriter bw = new BufferedWriter(new FileWriter("D:\\testFile2\\"+(j+1)+"-"+replaceAll+".txt"));
+									bw.write(text);
+									bw.newLine();
+									bw.flush();
+									bw.close();
+								}
 							}
 						}
 						

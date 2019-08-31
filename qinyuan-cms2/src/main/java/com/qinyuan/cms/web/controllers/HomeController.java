@@ -48,8 +48,8 @@ public class HomeController {
 	@Resource
 	private RedisTemplate redisTemplate;
 	
-	/*@Resource
-	private KafkaTemplate kafkaTemplate;*/
+	@Resource
+	private KafkaTemplate kafkaTemplate;
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(
@@ -110,7 +110,7 @@ public class HomeController {
 	@RequestMapping("/article")
 	public String article(Integer aid,Model model,HttpServletRequest request){
 		
-		/*User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
+		User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
 		if(user == null){
 			return "redirect:/login";
 		}
@@ -122,16 +122,16 @@ public class HomeController {
 			model.addAttribute("blog", article);
 			model.addAttribute("hitBlogs", blogs);
 			return "blog";
-		}else{*/
-			/*ops.set(""+aid);
+		}else{
+			ops.set(""+aid);
 			ops.expire(1, TimeUnit.MINUTES);
-			kafkaTemplate.send("test","addhis",aid.toString());*/
+			kafkaTemplate.send("test","addhis",aid.toString());
 			Article article = articleService.articleById(aid);
 			List<Article> blogs = articleService.hotarticle();
 			model.addAttribute("blog", article);
 			model.addAttribute("hitBlogs", blogs);
 			return "blog";
-		/*}*/
+		}
 		
 		
 	}

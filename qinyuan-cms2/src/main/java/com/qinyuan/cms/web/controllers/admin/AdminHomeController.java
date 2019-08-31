@@ -6,6 +6,7 @@ package com.qinyuan.cms.web.controllers.admin;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
@@ -17,7 +18,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,13 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.qinyuan.cms.domain.Article;
 import com.qinyuan.cms.domain.Channel;
-import com.qinyuan.cms.domain.User;
 import com.qinyuan.cms.es.dao.ArticleEsDao;
 import com.qinyuan.cms.service.ArticleService;
 import com.qinyuan.cms.service.ChannelCategoryService;
 import com.qinyuan.cms.utils.EsUtil;
 import com.qinyuan.cms.utils.PageUtils;
-import com.qinyuan.cms.web.Constant;
 import com.qinyuan.cms.web.controllers.PassportController;
 
 /**
